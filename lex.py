@@ -1,9 +1,6 @@
 import lex_config as conf
 import sys
 
-def output():
-	pass
-
 def main(test_file):
 
 	# With this specific email parser, we're going to simplify the definition
@@ -19,9 +16,13 @@ def main(test_file):
 	with open(test_file) as fp:
 		test_case = fp.readline()
 		while test_case != "":
+			new_creation = conf.New_Creation()
 			for char in test_case:
-				conf.mealy_actions(current_state, char)
+				new_creation.mealy_actions(state, char)
 				#state = conf.transition_matrix[char_type][]
+				new_creation.moore_actions(state)
 			test_case = fp.readline()
+
+			new_creation.output()
 
 main(sys.argv[1])
