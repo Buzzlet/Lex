@@ -1,18 +1,3 @@
-start_state = 0
-alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.@!#$%&'*+-/=?^_`{|}~;"
-accepting_states = [7]
-'''
-This transition matrix must be formatted such that they are lists of relationships such that
-the first element is a list of characters that have this entry in the table. The following
-elements of the list are tuples in the form (state, new_state) 
-'''
-transition_matrix = [["abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'*+-/=?^_`{|}~;",
-					  (0,1), (1,1), (2,2), (3,1), (4,5), (5,5), (6,7), (7,7)],
-					 [".", (0,2), (1,3), (2,2), (3,2), (4,2), (5,6), (6,2), (7,2)],
-					 ["@", (0,2), (1,4), (2,2), (3,2), (4,2), (5,2), (6,2), (7,2)]
-					]
-
-
 class New_Creation():
 	def __init__(self):
 		''''''
@@ -21,7 +6,8 @@ class New_Creation():
 		self.snd_lvl_domain = ""
 		self.local_host = ""
 		self.username = ""
-		self.valid = True
+		self.valid = False
+		self.local_host_exists = False
 
 	def output(self):
 		print("Input:", self.parsed_email, "->", "valid" if self.valid else "invalid")
@@ -34,24 +20,41 @@ class New_Creation():
 
 	def mealy_actions(self, state, char):
 		#print("Mealy in state", state, "with char", char)
+		valid_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'*+-/=?^_`{|}~;"
+
 		if char != '\n':
 			self.parsed_email += char
 
-		# if we're looking at a '.'
-		if char in transition_matrix[1][0]:
+		# local_host will get all of the characters. Later we will subtract off the 
+		# other parts of the domain.
+		if state in [4,5,6,7,8] and (char in valid_chars or char == '.'):
+			self.local_host += char
+
+		if char == '.':
 			if state in [0,1,3]:
 				self.username += char
+			if state == 7:
+				self.snd_lvl_domain = self.top_lvl_domain
+				self.top_lvl_domain = ""
+				self.local_host_exists = True
 
-		elif char in transition_matrix[0][0]:
+		elif char in valid_chars:
 			if state in [0,1,3]:
 				self.username += char
 			elif state in [4,5]:
 				self.snd_lvl_domain += char
-			elif state in [6,7]:
+			elif state in [6,7,8]:
 				self.top_lvl_domain += char
 
 	def moore_actions(self, state):
-		if state in accepting_states:
-			self.valid = True
+		pass
+
+	def finalize(self):
+		tmp1 = self.local_host
+		tmp2 = self.snd_lvl_domain + '.' + self.top_lvl_domain
+
+		# we don't want the local_host to include the other parts of domain
+		if self.local_host_exists:
+			self.local_host = self.local_host[:len(tmp1) - len(tmp2)-1]
 		else:
-			self.valid = False
+			self.local_host = ""
