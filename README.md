@@ -13,7 +13,6 @@ This is a program written for my Concepts of Programming Languages class intende
 	- __init__()
 	- mealy_actions()
 	- moore_actions()
-	- finalize()
 	- output()
 - Must be in the same directory as lex.py
 
