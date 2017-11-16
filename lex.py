@@ -51,9 +51,10 @@ def main(args):
 	# First line of config file is the start state
 	start_state = int(config.readline().strip('\n'))
 
-	# Second line of config file was the alphabet (never actually used)
+	# Second line of config file is the alphabet
 	# Because every alphabet character has an entry in the transition matrix,
 	# the actual alphabet is stated implicitly in the transition matrix
+	alphabet = config.readline().strip('\n')
 
 	# The second line is now sequence of accepting states
 	accept_states = config.readline().strip('\n').split()
@@ -71,32 +72,36 @@ def main(args):
 		while test_case != "":
 			state = start_state
 			new_creation = conf.New_Creation()
+			all_valid_chars = True
 
 			# Look at each character sequentially
 			for char in test_case:
-				new_creation.mealy_actions(state, char)
-				
-				# trying to weasel out the new state from the matrix
-				for entry in transition_matrix:
-					# Find the entry in the transition matrix for the subset
-					# of the alphabet in which this character lies
-					if char in entry[0]:
-						entry_index = transition_matrix.index(entry)
-						# Find the transition to take based on what state we're
-						# currently in. Update state
-						for state_change in transition_matrix[entry_index][1:]:
-							if state_change[0] == state:
-								state = state_change[1]
-								break;
+				if char in alphabet:
+
+					new_creation.mealy_actions(state, char)
+					
+					# trying to weasel out the new state from the matrix
+					for entry in transition_matrix:
+						# Find the entry in the transition matrix for the subset
+						# of the alphabet in which this character lies
+						if char in entry[0]:
+							entry_index = transition_matrix.index(entry)
+							# Find the transition to take based on what state we're
+							# currently in. Update state
+							for state_change in transition_matrix[entry_index][1:]:
+								if state_change[0] == state:
+									state = state_change[1]
+									break;
+				else:
+					all_valid_chars = False
 				
 				new_creation.moore_actions(state)
 
-			if state in accept_states:
+			if state in accept_states and all_valid_chars:
 				new_creation.valid = True
 			
-			new_creation.finalize()
 			new_creation.output()
 
-			test_case = fp.readline()
+			test_case = fp.readline().strip('\n')
 
 main(sys.argv)
