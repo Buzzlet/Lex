@@ -24,8 +24,8 @@ This is a program written for my Concepts of Programming Languages class intende
 	- A single integer
 
 	Accept States  
-	- A sequence of integers delimted by spaces
-	
+	- A sequence of integers delimited by spaces
+
 	Transition Matrix  
 	- Pairs of lines
 	- First line: A string of characters to follow the second line's state changes
@@ -35,3 +35,7 @@ This is a program written for my Concepts of Programming Languages class intende
 - The test file is a sequence of strings of characters to be validated
 - One test case per line is permitted
 
+# Email Implementation
+Displayed below is the FSA for this implementation of email addresses
+
+![alt text](https://github.com/Buzzlet/Lex/blob/master/email_fsa.png?raw=true "Email FSA")
