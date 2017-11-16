@@ -19,11 +19,11 @@ This is a program written for my Concepts of Programming Languages class intende
 
 ### Configuration File
 - The configuration file must present the configuration for the given lexeme with the following format:
-	Start State
+	Start State  
 	- A single integer
-	Accept States
+	Accept States  
 	- A sequence of integers delimted by spaces
-	Transition Matrix
+	Transition Matrix  
 	- Pairs of lines
 	- First line: A string of characters to follow the second line's state changes
 	- Second line: A sequence of transitions delimited by a comma and a space (", "). Each transition consists of two integers separated by a space.
