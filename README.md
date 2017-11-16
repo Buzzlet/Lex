@@ -51,8 +51,8 @@ Displayed below is the FSA for this implementation of email addresses
 7. The top level domain has a character
 8. The top level domain has seen a dot and there is a local host
 
-Valid email addresses have a username part before an "@".
-Valid usernames allow the common characters: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'*+-/=?^_\`{|}~;.
-Valid usernames do not start with, end with, or have consecutive dots.
-After the username there is an "@".
-Following the single "@", the remainder has the same format as the username, but must have at least one dot
+- Valid email addresses have a username part before an "@".
+- Valid usernames allow the common characters: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'*+-/=?^_\`{|}~;.
+- Valid usernames do not start with, end with, or have consecutive dots.
+- After the username there is an "@".
+- Following the single "@", the remainder has the same format as the username, but must have at least one dot
