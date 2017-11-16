@@ -40,7 +40,7 @@ def main(args):
 
 	# If there wasn't a test file specified
 	test_file = None
-	if len(args) < 2:
+	if len(args) < 3:
 		test_file = get_test_file()
 	else:
 		test_file = args[2]
@@ -51,12 +51,11 @@ def main(args):
 	# First line of config file is the start state
 	start_state = int(config.readline().strip('\n'))
 
-	# Second line of config file is the alphabet (never actually used)
+	# Second line of config file was the alphabet (never actually used)
 	# Because every alphabet character has an entry in the transition matrix,
 	# the actual alphabet is stated implicitly in the transition matrix
-	alphabet = config.readline().strip('\n')
 
-	# Next line is sequence of accepting states
+	# The second line is now sequence of accepting states
 	accept_states = config.readline().strip('\n').split()
 	for i in range(len(accept_states)):
 		accept_states[i] = int(accept_states[i])
