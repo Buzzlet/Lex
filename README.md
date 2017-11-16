@@ -39,3 +39,20 @@ This is a program written for my Concepts of Programming Languages class intende
 Displayed below is the FSA for this implementation of email addresses
 
 ![alt text](https://github.com/Buzzlet/Lex/blob/master/email_fsa.png?raw=true "Email FSA")
+
+## State Descriptions:
+0. Start state, no characters seen 
+1. There has been at least one "common" character seen in the username
+2. Reject state, some character has deemed this an invalid email
+3. The username has just had a dot
+4. The username portion is complete and valid
+5. The domain has at least one "common" character in it
+6. The second level domain exists
+7. The top level domain has a character
+8. The top level domain has seen a dot and there is a local host
+
+Valid email addresses have a username part before an "@".
+Valid usernames allow the common characters: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#$%&'*+-/=?^_\`{|}~;.
+Valid usernames do not start with, end with, or have consecutive dots.
+After the username there is an "@".
+Following the single "@", the remainder has the same format as the username, but must have at least one dot
