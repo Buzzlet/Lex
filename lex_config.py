@@ -11,11 +11,11 @@ class New_Creation():
 
 	def output(self):
 		print("Input:", self.parsed_email, "->", "valid" if self.valid else "invalid")
-		#if self.valid:
-		print("Username:", self.username)
-		print("Local Host:", self.local_host)
-		print("2nd Level Domain:", self.snd_lvl_domain)
-		print("Top Level Domain:", self.top_lvl_domain)
+		if self.valid:
+			print("Username:", self.username)
+			print("Local Host:", self.local_host)
+			print("2nd Level Domain:", self.snd_lvl_domain)
+			print("Top Level Domain:", self.top_lvl_domain)
 		print()
 
 	def mealy_actions(self, state, char):
