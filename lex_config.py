@@ -31,7 +31,10 @@ class New_Creation():
 			if state in [0,1,3]:
 				self.username += char
 			if state == 7:
-				self.local_host += self.snd_lvl_domain + char
+				if self.local_host != "":
+					self.local_host += char + self.snd_lvl_domain
+				else:
+					self.local_host += self.snd_lvl_domain
 				self.snd_lvl_domain = self.top_lvl_domain
 				self.top_lvl_domain = ""
 
