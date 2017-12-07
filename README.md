@@ -14,6 +14,8 @@ This is a program written for my Concepts of Programming Languages class intende
 	- mealy_actions()
 	- moore_actions()
 	- output()
+- Must have the following attributes:
+	- self.valid (boolean)
 - Must be in the same directory as lex.py
 
 ### Configuration File
@@ -21,6 +23,9 @@ This is a program written for my Concepts of Programming Languages class intende
 
 	Start State  
 	- A single integer
+
+	Alphabet
+	- A sequence of characters that are in the alphabet
 
 	Accept States  
 	- A sequence of integers delimited by spaces
@@ -56,3 +61,32 @@ Displayed below is the FSA for this implementation of email addresses
 - Valid usernames do not start with, end with, or have consecutive dots.
 - After the username there is an "@".
 - Following the single "@", the remainder has the same format as the username, but must have at least one dot
+
+
+# Date Implementation
+Displayed below is the FSA for this implementation of dates
+
+![alt text](https://github.com/Buzzlet/Lex/blob/master/dates_fsa.png?raw=true "Date FSA")
+
+## State Descriptions:
+Because there are 40 states, a description of each is tedious, so I shall only describe the "important" states.
+0. Start state, no characters seen
+19. The date is being recognized under the Mon DD, YYYY format and has seen a valid month
+20. A valid month and a space has been seen, so the date is now expected
+23.The month, day, and comma have been successfully recognized and to continue on the Mon DD, YYYY format, a space is expected
+38. A valid month, space, date, comma, and space have been seen and the year is now expected.
+27. A valid Mon DD, YYYY date has been seen and accepted
+28. The date being recognized is under the YYYY-MM-DD format and has the first digit of the year
+31. The 4 digits for the year have been seen under the YYYY-MM-DD format
+32. The year and a dash have been seen, so the month is now expected
+34. YYYY-MM have been seen
+35. The second dash of the YYYY-MM-DD format has been seen, so the day digits are expected
+37. The day has been seen in the YYYY-MM-DD format and the entry is a valid date
+## Valid Dates
+- Valid dates can take on two formats:
+	1. 2017-12-06 (YYYY-MM-DD)
+		- The year must be 4 digits, the month must be 2 digits, and the day must be 2 digits as well. So, placeholder 0's are often required. The whole date is not validated, so 0000-00-00 is a valid date. Leap years are not taken into account either.
+	2. Dec 6, 2017 (Mon DD, YYYY)
+		- The month is not case sensitive, but must be either Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, or Dec
+		- There must be a space followed by the date. The date can be either 1 or two digits. The date is not validated, so the date Dec 99, 2017 is valid.
+		- Following the date there must be a "," and a space. Then a valid date requires 4 digits. These digits are not validated, so the year 0000 is valid.

@@ -64,6 +64,7 @@ def main(args):
 	# Construct the transition matrix
 	transition_matrix = create_transition_matrix(config)
 	
+	print(transition_matrix)
 	# initiate testing
 	with open(test_file) as fp:
 
