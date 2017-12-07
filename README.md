@@ -70,6 +70,7 @@ Displayed below is the FSA for this implementation of dates
 
 ## State Descriptions:
 Because there are 40 states, a description of each is tedious, so I shall only describe the "important" states.
+
 - State 0: Start state, no characters seen
 - State 19: The date is being recognized under the Mon DD, YYYY format and has seen a valid month
 - State 20: A valid month and a space has been seen, so the date is now expected
