@@ -70,18 +70,18 @@ Displayed below is the FSA for this implementation of dates
 
 ## State Descriptions:
 Because there are 40 states, a description of each is tedious, so I shall only describe the "important" states.
-- 0. Start state, no characters seen
-- 19. The date is being recognized under the Mon DD, YYYY format and has seen a valid month
-- 20. A valid month and a space has been seen, so the date is now expected
-- 23.The month, day, and comma have been successfully recognized and to continue on the Mon DD, YYYY format, a space is expected
-- 38. A valid month, space, date, comma, and space have been seen and the year is now expected.
-- 27. A valid Mon DD, YYYY date has been seen and accepted
-- 28. The date being recognized is under the YYYY-MM-DD format and has the first digit of the year
-- 31. The 4 digits for the year have been seen under the YYYY-MM-DD format
-- 32. The year and a dash have been seen, so the month is now expected
-- 34. YYYY-MM have been seen
-- 35. The second dash of the YYYY-MM-DD format has been seen, so the day digits are expected
-- 37. The day has been seen in the YYYY-MM-DD format and the entry is a valid date
+- State 0: Start state, no characters seen
+- State 19: The date is being recognized under the Mon DD, YYYY format and has seen a valid month
+- State 20: A valid month and a space has been seen, so the date is now expected
+- State 23:The month, day, and comma have been successfully recognized and to continue on the Mon DD, YYYY format, a space is expected
+- State 38: A valid month, space, date, comma, and space have been seen and the year is now expected.
+- State 27: A valid Mon DD, YYYY date has been seen and accepted
+- State 28: The date being recognized is under the YYYY-MM-DD format and has the first digit of the year
+- State 31: The 4 digits for the year have been seen under the YYYY-MM-DD format
+- State 32: The year and a dash have been seen, so the month is now expected
+- State 34: YYYY-MM have been seen
+- State 35: The second dash of the YYYY-MM-DD format has been seen, so the day digits are expected
+- State 37: The day has been seen in the YYYY-MM-DD format and the entry is a valid date
 
 ## Valid Dates
 - Valid dates can take on two formats:
